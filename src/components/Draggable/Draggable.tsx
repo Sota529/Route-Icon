@@ -12,7 +12,7 @@ export const Draggable: React.FC<DraggableProps> = (props) => {
   }, [])
 
   return (
-    <div ref={divRef} className="absolute w-12 cursor-move box-border border border-[#242424] hover:border-sky-400">
+    <div ref={divRef} className="absolute w-[100px] cursor-move">
       {props.children}
     </div>
   )
