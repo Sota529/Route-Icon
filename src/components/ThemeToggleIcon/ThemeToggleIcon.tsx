@@ -24,6 +24,7 @@ export const ThemeToggleIcon: React.FC<ThemeToggleIconProps> = (props) => {
       <label className="relative mt-2  flex cursor-pointer items-center">
         <input
           type="checkbox"
+          aria-label='テーマ変更のためのトグルボタン'
           className="peer sr-only"
           defaultChecked={currentTheme === 'dark'}
           onClick={toggleDarkMode}

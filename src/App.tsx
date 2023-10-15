@@ -59,18 +59,18 @@ export const App: React.FC = () => {
   }
 
   return (
-    <div className="flex h-full max-w-[1280] items-center justify-center bg-base-white dark:bg-base-black">
-      <main className="">
+    <div className="bg-base-white dark:bg-base-black flex h-full max-w-[1280] items-center justify-center">
+      <main>
         {isCanUploadFile && (
           <form className="box-content rounded-md bg-white p-20 shadow-md">
             <div className="mb-8 flex justify-center">
               <ThemeToggleIcon className="flex items-center justify-between" />
             </div>
-            <label id="files" className="mt-4 block">
+            <label className="mt-4 block">
               <span className="sr-only">ファイルを選択</span>
               <input
-                id="files"
                 type="file"
+                aria-label="アップロードするファイルを選択する"
                 className="block w-full cursor-pointer text-sm
                   text-slate-500 file:mr-4 file:rounded-full file:border-0
                   file:bg-violet-50 file:px-4
@@ -82,12 +82,12 @@ export const App: React.FC = () => {
                 onChange={handleFileChange}
               />
             </label>
-            <label id="count" className="mt-4 flex justify-center text-justify">
+            <label className="mt-4 flex justify-center text-justify">
               <span className="text-lg font-bold">× </span>
               <input
-                id="count"
                 type="text"
-                className="ml-4 w-10 rounded-md bg-blue-100 px-2 font-bold text-blue-500"
+                aria-label="アップロードしたファイルの数の何倍が表示されるかを選択する"
+                className="ml-4 w-10 rounded-lg bg-blue-50 px-2 font-bold text-blue-700"
                 value={count}
                 onChange={handleCountChange}
                 autoComplete="off"
