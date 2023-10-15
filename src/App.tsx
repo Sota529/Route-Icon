@@ -4,7 +4,7 @@ import './App.css'
 import React from 'react'
 import { ThemeToggleIcon } from './components/ThemeToggleIcon/'
 
-export const App = () => {
+export const App: React.FC = () => {
   const [isCanUploadFile, setIsCanUploadFile] = React.useState<boolean>(true)
   const [count, setCount] = React.useState<string>('1')
   const [uploadedFiles, setUploadedFiles] = React.useState<(string | ArrayBuffer)[]>([])
@@ -59,10 +59,10 @@ export const App = () => {
   }
 
   return (
-    <div className="flex h-full max-w-[1280] items-center justify-center">
-      <main>
+    <div className="flex h-full max-w-[1280] items-center justify-center dark:bg-base-black">
+      <main className="">
         {isCanUploadFile && (
-          <form className="box-content rounded-md p-20 shadow-md ">
+          <form className="box-content rounded-md bg-white p-20 shadow-md">
             <div className="mb-8 flex justify-center">
               <ThemeToggleIcon className="flex items-center justify-between" />
             </div>
@@ -87,9 +87,10 @@ export const App = () => {
               <input
                 id="count"
                 type="text"
-                className="ml-4 w-10 rounded-md bg-blue-100 px-2 text-blue-500"
+                className="ml-4 w-10 rounded-md bg-blue-100 px-2 font-bold text-blue-500"
                 value={count}
                 onChange={handleCountChange}
+                autoComplete="off"
               />
             </label>
           </form>
