@@ -59,7 +59,7 @@ export const App: React.FC = () => {
   }
 
   return (
-    <div className="flex h-full max-w-[1280] items-center justify-center dark:bg-base-black">
+    <div className="flex h-full max-w-[1280] items-center justify-center bg-base-white dark:bg-base-black">
       <main className="">
         {isCanUploadFile && (
           <form className="box-content rounded-md bg-white p-20 shadow-md">
