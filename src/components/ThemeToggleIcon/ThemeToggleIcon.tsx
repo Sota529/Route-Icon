@@ -1,6 +1,5 @@
 import React from 'react'
 import { Icon } from '../Icon'
-// import { setGlobalTheme } from '../../utils/Theme'
 import { useSetThemeContext, useThemeContext } from '../../provider/ThemeProvider'
 
 type ThemeToggleIconProps = React.ComponentProps<'div'>
