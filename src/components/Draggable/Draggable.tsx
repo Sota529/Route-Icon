@@ -19,8 +19,15 @@ export const Draggable: React.FC<DraggableProps> = (props) => {
 }
 
 const dragElement = (elmnt: HTMLDivElement | null) => {
+  // 初期に表示される場所としてランダムな0~100の値を出す
+  const randomPositionX = Math.random();
+  const randomPositionY = Math.random();
+  if(elmnt){
+    elmnt.style.top = window.innerHeight*randomPositionX+'px'
+    elmnt.style.left =window.innerHeight*randomPositionY+'px'
+  }
   let X = 0,
-    Y = 0,
+    Y =0,
     currentX = 0,
     currentY = 0
 
