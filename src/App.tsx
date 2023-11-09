@@ -7,7 +7,7 @@ import { ThemeToggleIcon } from './components/ThemeToggleIcon/'
 export const App: React.FC = () => {
   const [isCanUploadFile, setIsCanUploadFile] = React.useState<boolean>(true)
   const [count, setCount] = React.useState<string>('1')
-  const [uploadedFiles, setUploadedFiles] = React.useState<(string | ArrayBuffer)[]>([])
+  const [isUploadedFiles, setIsUploadedFiles] = React.useState<(string | ArrayBuffer)[]>([])
 
   const handleCountChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     e.preventDefault()
@@ -16,7 +16,7 @@ export const App: React.FC = () => {
 
   const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     if (!e.target.files) {
-      setUploadedFiles([])
+      setIsUploadedFiles([])
       return
     }
     // 数値以外が入力されていたら、１にする
@@ -36,7 +36,7 @@ export const App: React.FC = () => {
         if (reader.result) {
           Uploadedfiles.push(reader.result)
           if (Uploadedfiles.length === files.length) {
-            setUploadedFiles(Uploadedfiles)
+            setIsUploadedFiles(Uploadedfiles)
           }
         }
       }
@@ -49,7 +49,7 @@ export const App: React.FC = () => {
     }
   }
 
-  const Multi: React.FC<{ image: string | ArrayBuffer }> = (props) => {
+  const UploadFiles: React.FC<{ image: string | ArrayBuffer }> = (props) => {
     const Component = Array.from({ length: Number(count) }, (_, i) => (
       <Draggable key={String(props.image) + i}>
         <Icon src={String(props.image)} className="box-border animate-spin" />
@@ -59,7 +59,7 @@ export const App: React.FC = () => {
   }
 
   return (
-    <div className="bg-base-white dark:bg-base-black flex h-full max-w-[1280] items-center justify-center">
+    <div className="flex h-full max-w-[1280] items-center justify-center bg-base-white dark:bg-base-black">
       <main>
         {isCanUploadFile && (
           <form className="box-content rounded-md bg-white p-20 shadow-md">
@@ -96,8 +96,8 @@ export const App: React.FC = () => {
           </form>
         )}
 
-        {uploadedFiles?.map((image, i) => {
-          return <Multi image={image} key={String(image) + i} />
+        {isUploadedFiles?.map((image, i) => {
+          return <UploadFiles image={image} key={String(image) + i} />
         })}
       </main>
     </div>
