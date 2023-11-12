@@ -19,15 +19,14 @@ export const Draggable: React.FC<DraggableProps> = (props) => {
 }
 
 const dragElement = (elmnt: HTMLDivElement | null) => {
-  // 初期に表示される場所としてランダムな0~100の値を出す
-  const randomPositionX = Math.random();
-  const randomPositionY = Math.random();
-  if(elmnt){
-    elmnt.style.top = window.innerHeight*randomPositionX+'px'
-    elmnt.style.left =window.innerHeight*randomPositionY+'px'
+  const randomPositionX = roundToUnderPointEight(0.8)
+  const randomPositionY = roundToUnderPointEight(0.9)
+  if (elmnt) {
+    elmnt.style.top = window.innerHeight * randomPositionX + 'px'
+    elmnt.style.left = window.innerWidth * randomPositionY + 'px'
   }
   let X = 0,
-    Y =0,
+    Y = 0,
     currentX = 0,
     currentY = 0
 
@@ -58,4 +57,13 @@ const dragElement = (elmnt: HTMLDivElement | null) => {
   if (elmnt) {
     elmnt.onmousedown = dragMouseDown
   }
+}
+
+// num未満の乱数を生成する
+const roundToUnderPointEight = (num: number) => {
+  const r = Math.random()
+  if (r > num) {
+    return 0.7
+  }
+  return r
 }
