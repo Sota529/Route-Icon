@@ -3,6 +3,7 @@ import { Draggable } from './components/Draggable'
 import './App.css'
 import React from 'react'
 import { ThemeToggleIcon } from './components/ThemeToggleIcon/'
+import { getRandomSpinSpeed } from './utils/useGetRandomSpinSpeed'
 
 export const App: React.FC = () => {
   const [isCanUploadFile, setIsCanUploadFile] = React.useState<boolean>(true)
@@ -49,15 +50,6 @@ export const App: React.FC = () => {
     }
   }
 
-  const UploadFiles: React.FC<{ image: string | ArrayBuffer }> = (props) => {
-    const Component = Array.from({ length: Number(count) }, (_, i) => (
-      <Draggable key={String(props.image) + i}>
-        <Icon src={String(props.image)} className="box-border animate-spin" />
-      </Draggable>
-    ))
-    return Component
-  }
-
   return (
     <div className="flex h-full max-w-[1280] items-center justify-center bg-base-white dark:bg-base-black">
       <main>
@@ -97,11 +89,22 @@ export const App: React.FC = () => {
         )}
 
         {isUploadedFiles?.map((image, i) => {
-          return <UploadFiles image={image} key={String(image) + i} />
+          return <UploadFiles image={image} key={String(image) + i} count={count} />
         })}
       </main>
     </div>
   )
 }
 
+const UploadFiles: React.FC<{ image: string | ArrayBuffer; count: string }> = (props) => {
+  const Component = Array.from({ length: Number(props.count) }, (_, i) => {
+    const randomSpinSpeed = getRandomSpinSpeed()
+    return (
+      <Draggable key={String(props.image) + i}>
+        <Icon src={String(props.image)} className={`box-border ` + randomSpinSpeed} />
+      </Draggable>
+    )
+  })
+  return Component
+}
 export default App
