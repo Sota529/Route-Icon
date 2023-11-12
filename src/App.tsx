@@ -89,14 +89,14 @@ export const App: React.FC = () => {
         )}
 
         {isUploadedFiles?.map((image, i) => {
-          return <UploadFiles image={image} key={String(image) + i} count={count} />
+          return <UploadIcons image={image} key={String(image) + i} count={count} />
         })}
       </main>
     </div>
   )
 }
 
-const UploadFiles: React.FC<{ image: string | ArrayBuffer; count: string }> = (props) => {
+const UploadIcons: React.FC<{ image: string | ArrayBuffer; count: string }> = (props) => {
   const randomSpinSpeed = useGetRandomSpinSpeed(Number(props.count))
   const Component = Array.from({ length: Number(props.count) }, (_, i) => {
     return (
