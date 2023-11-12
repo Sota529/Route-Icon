@@ -1,9 +1,7 @@
-import { Icon } from './components/Icon'
-import { Draggable } from './components/Draggable'
-import './App.css'
 import React from 'react'
 import { ThemeToggleIcon } from './components/ThemeToggleIcon/'
-import { useGetRandomSpinSpeed } from './hooks/useGetRandomSpinSpeed'
+import { UploadIcons } from './components/UploadIcons'
+import './App.css'
 
 export const App: React.FC = () => {
   const [isCanUploadFile, setIsCanUploadFile] = React.useState<boolean>(true)
@@ -94,17 +92,5 @@ export const App: React.FC = () => {
       </main>
     </div>
   )
-}
-
-const UploadIcons: React.FC<{ image: string | ArrayBuffer; count: string }> = (props) => {
-  const randomSpinSpeed = useGetRandomSpinSpeed(Number(props.count))
-  const Component = Array.from({ length: Number(props.count) }, (_, i) => {
-    return (
-      <Draggable key={String(props.image) + i}>
-        <Icon src={String(props.image)} className={`box-border ` + randomSpinSpeed[i]} />
-      </Draggable>
-    )
-  })
-  return Component
 }
 export default App
